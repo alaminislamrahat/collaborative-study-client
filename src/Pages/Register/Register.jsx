@@ -16,7 +16,7 @@ const Register = () => {
 
     const axiosPublic = UseAxiosPublic()
 
-    const [role, setRole] = useState()
+    const [role, setRole] = useState("student")
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
     const navigate = useNavigate();
@@ -59,22 +59,29 @@ const Register = () => {
                 updateUserProfile(name, photo)
                     .then(() => {
                         console.log('User updated');
-                        axiosPublic.post('/role',{role})
-                        .then(res => {
-                            console.log(res.data)
-                        })
+                        axiosPublic.post('/role', { role, email })
+                            .then(res => {
+                                console.log(res.data)
+                            })
                         toast.success("Sign up successfully.");
                         navigate(location.state ? location.state : '/');
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) => toast.error(err));
             })
-            .catch((error) => console.log(error));
+            .catch((error) => toast.error(error));
     };
 
     const googleLogin = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 console.log(result);
+
+                const userInfo = {
+                    email: result.user?.email,
+                    role
+                }
+
+                axiosPublic.post('/role', userInfo)
                 toast.success("Sign up successfully.");
                 navigate(location.state ? location.state : '/');
             })
@@ -90,7 +97,7 @@ const Register = () => {
                     <img src={img} alt="Register" className="rounded-lg shadow-lg" />
                 </div>
                 <div className="card border-2 border-white w-full max-w-md rounded-lg shadow-2xl p-8">
-                    <h1 className="text-center text-3xl font-extrabold text-blue-500 mb-6">Sign Up</h1>
+                    <h1 className="text-center text-3xl font-extrabold text-[#92E3A9] mb-6">Sign Up</h1>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="form-control">
                             <label className="label font-semibold text-gray-400">
@@ -100,7 +107,7 @@ const Register = () => {
                                 name="name"
                                 type="text"
                                 placeholder="Enter your name"
-                                className="input input-bordered border-gray-600 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="input input-bordered  rounded-md  text-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                         </div>
@@ -112,7 +119,7 @@ const Register = () => {
                                 name="photo"
                                 type="text"
                                 placeholder="Enter your photo URL"
-                                className="input input-bordered border-gray-600 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="input input-bordered  rounded-md  text-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                         </div>
@@ -124,23 +131,23 @@ const Register = () => {
                                 name="email"
                                 type="email"
                                 placeholder="Enter your email"
-                                className="input input-bordered border-gray-600 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="input input-bordered  rounded-md  text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                         </div>
                         <div className="form-control">
-                            <label className="label font-semibold text-gray-400">
+                            <label className="label font-semibold text-gray-600">
                                 <span>Password</span>
                             </label>
                             <input
                                 name="password"
                                 type="password"
                                 placeholder="Enter your password"
-                                className="input input-bordered border-gray-600 rounded-md bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="input input-bordered  rounded-md  text-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                             <label className="label mt-1">
-                                <a href="#" className="text-sm text-blue-500 hover:underline">
+                                <a href="#" className="text-sm text-[#92E3A9] hover:underline">
                                     Forgot password?
                                 </a>
                             </label>
@@ -154,22 +161,22 @@ const Register = () => {
                                 id="sort"
                                 className={`border-teal-500 border-2 bg-transparent  p-3 rounded-md w-full md:w-auto`}
                             >
-                               
+
                                 <option defaultValue={"student"} >
                                     student
                                 </option>
                                 <option >
                                     teacher
                                 </option>
-                               
-                               
+
+
                             </select>
                         </div>
 
                         <div className="form-control mt-6">
                             <button
                                 type="submit"
-                                className="btn bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2"
+                                className="btn bg-[#92E3A9] hover:bg-blue-600 text-white font-semibold rounded-md py-2"
                             >
                                 Sign Up
                             </button>
@@ -178,13 +185,13 @@ const Register = () => {
                     <div className="divider text-gray-500">OR</div>
                     <button
                         onClick={googleLogin}
-                        className="btn flex items-center justify-center bg-gray-700 border border-gray-600 shadow-md hover:shadow-lg text-gray-200 py-2 rounded-md w-full">
+                        className="btn flex items-center justify-center text-slate-800  shadow-md hover:shadow-lg py-2 rounded-md w-full">
                         <FcGoogle className="text-2xl mr-2" />
                         Sign up with Google
                     </button>
                     <p className="py-6 text-center text-gray-400">
                         Already have an account?{' '}
-                        <Link className="font-bold text-blue-500 hover:underline" to="/login">
+                        <Link className="font-bold text-[#92E3A9] hover:underline" to="/login">
                             Login
                         </Link>
                     </p>
