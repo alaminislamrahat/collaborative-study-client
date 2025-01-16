@@ -9,6 +9,9 @@ import AllSession from "../Pages/Dashboard/TeacherDashboard/AllSession";
 import AddStudySession from "../Pages/Dashboard/TeacherDashboard/AddStudySession";
 import UploadMeterials from "../Pages/Dashboard/TeacherDashboard/UploadMeterials";
 import AllMeterials from "../Pages/Dashboard/TeacherDashboard/AllMeterials";
+import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers";
+import ViewAllStudySession from "../Pages/Dashboard/Admin/ViewAllStudySession";
+import ViewAllMaterials from "../Pages/Dashboard/Admin/ViewAllMaterials";
 
 
 export const router = createBrowserRouter([
@@ -21,11 +24,11 @@ export const router = createBrowserRouter([
             element : <Home/>
         },
         {
-            path:'/register',
+            path:'register',
             element : <Register/>
         },
         {
-            path:'/login',
+            path:'login',
             element : <Login/>
         },
       ]
@@ -34,6 +37,7 @@ export const router = createBrowserRouter([
       path : 'dashboard',
       element : <Dashboard/>,
       children : [
+        // for tutor
         {
           path : 'all-session',
           element : <AllSession/>
@@ -46,9 +50,23 @@ export const router = createBrowserRouter([
           path : 'upload-materials',
           element : <UploadMeterials/>
         },
+
         {
           path : 'all-materials',
           element : <AllMeterials/>
+        },
+        // for admin
+        {
+          path : 'view-all-users',
+          element : <ViewAllUsers/>
+        },
+        {
+          path : 'View-all-study-session ',
+          element : <ViewAllStudySession/>
+        },
+        {
+          path : 'View-all-materials ',
+          element : <ViewAllMaterials/>
         },
       ]
     }

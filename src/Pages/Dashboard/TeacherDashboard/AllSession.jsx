@@ -3,7 +3,7 @@
 const AllSession = () => {
     return (
         <div>
-            
+            all session
         </div>
     );
 };
