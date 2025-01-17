@@ -43,14 +43,14 @@ const Slider = () => {
                 isTeacher && <Card className="h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
                     <div className="mb-2 p-4">
                         <NavLink to="/">
-                            <Typography variant="h5" color="blue-gray">
+                            <Typography variant="h5" className="text-[#72a55f]">
                                 Study Zone
                             </Typography>
                         </NavLink>
                     </div>
                     <List>
                         <NavLink to="/dashboard/all-session">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <VscGoToEditingSession />
                                 </ListItemPrefix>
@@ -58,7 +58,7 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/add-session">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <MdAddCircleOutline />
                                 </ListItemPrefix>
@@ -66,7 +66,7 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/upload-materials">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
@@ -77,7 +77,7 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/all-materials">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <FaRegListAlt />
                                 </ListItemPrefix>
@@ -86,7 +86,9 @@ const Slider = () => {
                         </NavLink>
 
                        
-                        <ListItem onClick={handleLogout}>
+                        <ListItem
+                        className="text-red-500 bg-red-100/60"
+                         onClick={handleLogout}>
                             <ListItemPrefix>
                                 <PowerIcon className="h-5 w-5" />
                             </ListItemPrefix>
@@ -100,14 +102,14 @@ const Slider = () => {
                 isAdmin && <Card className="h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
                     <div className="mb-2 p-4">
                         <NavLink to="/">
-                            <Typography variant="h5" color="blue-gray">
+                            <Typography variant="h5" className="text-[#72a55f]">
                                 Study Zone
                             </Typography>
                         </NavLink>
                     </div>
                     <List>
                         <NavLink to="/dashboard/view-all-users">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                 <FaUsers />
                                 </ListItemPrefix>
@@ -115,7 +117,7 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/view-all-session">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                 <CiViewTimeline />
                                 </ListItemPrefix>
@@ -123,7 +125,7 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/view-all-materials">
-                            <ListItem>
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
@@ -133,7 +135,7 @@ const Slider = () => {
                         </NavLink>
                        
 
-                        <ListItem onClick={handleLogout}>
+                        <ListItem className="text-red-500 bg-red-100/60" onClick={handleLogout}>
                             <ListItemPrefix>
                                 <PowerIcon className="h-5 w-5" />
                             </ListItemPrefix>
