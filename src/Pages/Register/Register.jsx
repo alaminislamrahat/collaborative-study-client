@@ -59,7 +59,7 @@ const Register = () => {
                 updateUserProfile(name, photo)
                     .then(() => {
                         console.log('User updated');
-                        axiosPublic.post('/role', { role, email })
+                        axiosPublic.post('/role', { role, email,photo,name })
                             .then(res => {
                                 console.log(res.data)
                             })
@@ -78,7 +78,8 @@ const Register = () => {
 
                 const userInfo = {
                     email: result.user?.email,
-                    role
+                    role,
+                    name : result.user?.displayName
                 }
 
                 axiosPublic.post('/role', userInfo)
