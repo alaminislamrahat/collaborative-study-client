@@ -1,16 +1,16 @@
-
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import UseAuth from '../../../Hooks/UseAuth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const AddStudySession = () => {
-    const {user} = UseAuth();
+    const { user } = UseAuth();
     const axiosSecure = UseAxiosSecure();
+
     const [formData, setFormData] = useState({
         sessionTitle: '',
-        tutorName: user?.name || 'Tutor Name',
-        tutorEmail: user?.email || 'Tutor Email',
+        tutorName: '',
+        tutorEmail: '',
         sessionDescription: '',
         registrationStartDate: '',
         registrationEndDate: '',
@@ -20,6 +20,17 @@ const AddStudySession = () => {
         registrationFee: 0, // Read-only, default 0
         status: 'pending', // Default pending
     });
+
+    // Update tutorName and tutorEmail when user is loaded
+    useEffect(() => {
+        if (user) {
+            setFormData((prevData) => ({
+                ...prevData,
+                tutorName: user.displayName || 'Tutor Name',
+                tutorEmail: user.email || 'Tutor Email',
+            }));
+        }
+    }, [user]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,8 +42,22 @@ const AddStudySession = () => {
         try {
             const response = await axiosSecure.post('/addSession', formData);
             console.log(response.data);
-            if(response.data){
-                toast.success('data added')
+            if (response.data) {
+                toast.success('Session added successfully');
+                // Optionally, reset form
+                setFormData({
+                    sessionTitle: '',
+                    tutorName: user?.displayName || 'Tutor Name',
+                    tutorEmail: user?.email || 'Tutor Email',
+                    sessionDescription: '',
+                    registrationStartDate: '',
+                    registrationEndDate: '',
+                    classStartDate: '',
+                    classEndDate: '',
+                    sessionDuration: '',
+                    registrationFee: 0,
+                    status: 'pending',
+                });
             }
         } catch (error) {
             console.error('Error adding session:', error);
@@ -64,7 +89,7 @@ const AddStudySession = () => {
                     <input
                         type="text"
                         name="tutorName"
-                        value={user?.displayName}
+                        value={formData.tutorName}
                         readOnly
                         className="w-full border rounded px-3 py-2 bg-gray-100 cursor-not-allowed"
                     />
@@ -76,7 +101,7 @@ const AddStudySession = () => {
                     <input
                         type="email"
                         name="tutorEmail"
-                        value={user?.email}
+                        value={formData.tutorEmail}
                         readOnly
                         className="w-full border rounded px-3 py-2 bg-gray-100 cursor-not-allowed"
                     />

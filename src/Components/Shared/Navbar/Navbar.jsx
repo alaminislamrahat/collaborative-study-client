@@ -39,7 +39,7 @@ const Navbar = () => {
                                 onClick={() => logOut()}
                                 className="btn">Logout</a>
                         </ul>
-                    </div> : <Link className="btn bg-[#E9F9EF]" to={"/register"}>Login</Link>
+                    </div> : <Link className="btn bg-[#E9F9EF]" to={"/login"}>Login</Link>
                 }
             </div>
         </div>

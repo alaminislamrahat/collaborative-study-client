@@ -85,7 +85,8 @@ const Slider = () => {
                             </ListItem>
                         </NavLink>
 
-                        <ListItem onClick={() => logOut()}>
+                       
+                        <ListItem onClick={handleLogout}>
                             <ListItemPrefix>
                                 <PowerIcon className="h-5 w-5" />
                             </ListItemPrefix>
@@ -113,7 +114,7 @@ const Slider = () => {
                                 View all Users
                             </ListItem>
                         </NavLink>
-                        <NavLink to="/dashboard/add-session">
+                        <NavLink to="/dashboard/view-all-session">
                             <ListItem>
                                 <ListItemPrefix>
                                 <CiViewTimeline />
@@ -121,7 +122,7 @@ const Slider = () => {
                                 View-all-study-session
                             </ListItem>
                         </NavLink>
-                        <NavLink to="/dashboard/upload-materials">
+                        <NavLink to="/dashboard/view-all-materials">
                             <ListItem>
                                 <ListItemPrefix>
                                     <FaRegEdit />

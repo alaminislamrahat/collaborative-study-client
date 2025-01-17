@@ -61,11 +61,11 @@ export const router = createBrowserRouter([
           element : <ViewAllUsers/>
         },
         {
-          path : 'View-all-study-session ',
+          path : 'view-all-session',
           element : <ViewAllStudySession/>
         },
         {
-          path : 'View-all-materials ',
+          path : 'view-all-materials',
           element : <ViewAllMaterials/>
         },
       ]

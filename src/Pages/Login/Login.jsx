@@ -61,7 +61,7 @@ const Login = () => {
                                 name="email"
                                 type="email"
                                 placeholder="Enter your email"
-                                className="input input-bordered  rounded-md  text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                className="input input-bordered  rounded-md  text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 "
                                 required
                             />
                         </div>
@@ -73,7 +73,7 @@ const Login = () => {
                                 name="password"
                                 type="password"
                                 placeholder="Enter your password"
-                                className="input input-bordered  rounded-md  text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                className="input input-bordered  rounded-md  text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 "
                                 required
                             />
                             <label className="label mt-1">
