@@ -15,7 +15,7 @@ const AllSession = () => {
     const { data: studysession = [], refetch } = useQuery({
         queryKey: [user?.email,"allSession"],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/allSession/admin?email=${user.email}`);
+            const { data } = await axiosSecure.get(`/allSession/tutor?email=${user.email}`);
             return data;
         },
     });
