@@ -2,13 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { MdModeEditOutline } from "react-icons/md";
+import { FaTrashAlt } from "react-icons/fa";
 
 const ViewAllStudySession = () => {
     const axiosSecure = UseAxiosSecure();
     const [selectedId, setSelectedId] = useState(null);
     const [selectedStatus, setSelectedStatus] = useState(null);
 
-    const { data: studysession = [],refetch } = useQuery({
+    const { data: studysession = [], refetch } = useQuery({
         queryKey: ["studysession"],
         queryFn: async () => {
             const { data } = await axiosSecure.get("/allSession/admin");
@@ -44,6 +47,22 @@ const ViewAllStudySession = () => {
         document.getElementById("my_modal_1").showModal();
     };
 
+
+    // delete 
+    const handleDelete = async(id) => {
+        console.log(id);
+        try{
+            const {data} = await axiosSecure.delete(`/session/delete/admin/${id}`)
+            console.log(data);
+            toast.success('Deleted successfully')
+            refetch();
+        }
+        catch(err){
+            console.log(err);
+            toast.error(err)
+        }
+    }
+
     return (
         <div>
             <h1 className="text-center font-bold text-4xl text-slate-700 py-10">
@@ -59,6 +78,7 @@ const ViewAllStudySession = () => {
                             <th>Duration</th>
                             <th>Registration Fee</th>
                             <th>Status</th>
+                            <th>Action</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -135,6 +155,17 @@ const ViewAllStudySession = () => {
                                         </button>
                                     </div>
                                 </td>
+                                <td>
+                                    <div className="flex gap-3">
+                                        <Link to={`/dashboard/update-session-admin/${item._id}`}
+                                            disabled={item.status === 'pending' || item.status === 'Rejected'}
+                                            className="btn bg-yellow-100/60 text-yellow-600"><MdModeEditOutline /></Link>
+                                        <button
+                                            onClick={()=>handleDelete(item._id)}
+                                            disabled={item.status === 'pending' || item.status === 'Rejected'}
+                                            className="btn bg-red-100/60 text-red-600"><FaTrashAlt /></button>
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -154,7 +185,7 @@ const ViewAllStudySession = () => {
                                     ? parseFloat(e.target.registrationFee.value || 0)
                                     : 0;
 
-                           
+
 
                             if (sessionType === "Paid" && fee <= 0) {
                                 toast.error("Please specify a valid fee for paid sessions.");
@@ -175,9 +206,9 @@ const ViewAllStudySession = () => {
                                     className="radio radio-primary"
                                     defaultChecked
                                     onChange={() =>
-                                        (document.getElementById(
-                                            "registrationFeeContainer"
-                                        ).style.display = "none")
+                                    (document.getElementById(
+                                        "registrationFeeContainer"
+                                    ).style.display = "none")
                                     }
                                 />
                                 <span className="ml-2">Free</span>
@@ -189,9 +220,9 @@ const ViewAllStudySession = () => {
                                     value="Paid"
                                     className="radio radio-primary"
                                     onChange={() =>
-                                        (document.getElementById(
-                                            "registrationFeeContainer"
-                                        ).style.display = "block")
+                                    (document.getElementById(
+                                        "registrationFeeContainer"
+                                    ).style.display = "block")
                                     }
                                 />
                                 <span className="ml-2">Paid</span>

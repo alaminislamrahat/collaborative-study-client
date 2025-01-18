@@ -1,14 +1,14 @@
 import toast from "react-hot-toast";
 import UseAuth from "../../../Hooks/UseAuth";
-import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const UpdateSessionTutor = () => {
+const UpdateSessionAdmin = () => {
     const { user } = UseAuth();
     const axiosSecure = UseAxiosSecure();
     const data = useLoaderData();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     // Initialize formData with default values from the data object
     const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const UpdateSessionTutor = () => {
         classEndDate: data.classEndDate || '',
         sessionDuration: data.sessionDuration || '',
         registrationFee: data.registrationFee || 0,
-        status: 'pending', // Default to 'pending'
+        status: data.status || 'pending', // Default status from the server or fallback
     });
 
     const handleChange = (e) => {
@@ -32,12 +32,12 @@ const UpdateSessionTutor = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData)
+        console.log(formData);
         try {
-            const response = await axiosSecure.put(`/update/session/${data._id}`, formData);
+            const response = await axiosSecure.put(`/update/session/admin/${data._id}`, formData);
             if (response.data) {
                 toast.success('Session updated successfully');
-                setFormData({
+                setFormData((prevFormData) => ({
                     sessionTitle: '',
                     tutorName: user?.displayName || '',
                     tutorEmail: user?.email || '',
@@ -48,9 +48,9 @@ const UpdateSessionTutor = () => {
                     classEndDate: '',
                     sessionDuration: '',
                     registrationFee: 0,
-                    status: 'pending',
-                });
-                navigate('/dashboard/all-session');
+                    status: prevFormData.status, // Preserve the current status
+                }));
+                navigate('/dashboard/view-all-session')
             }
         } catch (error) {
             console.error('Error updating session:', error);
@@ -186,8 +186,8 @@ const UpdateSessionTutor = () => {
                         type="number"
                         name="registrationFee"
                         value={formData.registrationFee}
-                        readOnly
-                        className="w-full border rounded px-3 py-2 bg-gray-100 cursor-not-allowed"
+                        onChange={handleChange}
+                        className="w-full border rounded px-3 py-2 bg-gray-100"
                     />
                 </div>
 
@@ -202,4 +202,4 @@ const UpdateSessionTutor = () => {
     );
 };
 
-export default UpdateSessionTutor;
+export default UpdateSessionAdmin;

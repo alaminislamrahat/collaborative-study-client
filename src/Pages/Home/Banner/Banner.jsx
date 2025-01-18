@@ -21,7 +21,7 @@ const Banner = () => {
         {/* Image Section */}
         <div className="flex-1">
           <img
-            src="https://i.ibb.co/Kxmh6q4/Education-bro.png"
+            src="https://i.ibb.co.com/Cwn0wL7/Education-pana-1.png"
             alt="Education Illustration"
             className="max-w-full rounded-lg "
           />

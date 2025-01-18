@@ -5,6 +5,7 @@ import img from '../../assets/Login-bro.png';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from '../../Firebase/firebase.confiq';
 import UseAuth from '../../Hooks/UseAuth';
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
@@ -25,9 +26,10 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 console.log(result);
+                toast.success('Login successfully')
                 navigate(location.state ? location.state : '/');
             })
-            .catch((error) => console.log(error.message));
+            .catch((error) => toast.error(error.message));
     };
 
     const googleLogin = () => {

@@ -3,19 +3,36 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import UseAuth from "../../../Hooks/UseAuth";
 
 
 const AllSession = () => {
 
     const axiosSecure = UseAxiosSecure();
+    const {user } = UseAuth()
 
     const { data: studysession = [], refetch } = useQuery({
-        queryKey: ["allSession"],
+        queryKey: [user?.email,"allSession"],
         queryFn: async () => {
-            const { data } = await axiosSecure.get("/allSession/admin");
+            const { data } = await axiosSecure.get(`/allSession/admin?email=${user.email}`);
             return data;
         },
     });
+
+    const handleDelete = async(id) => {
+        console.log(id);
+        try{
+            const {data} = await axiosSecure.delete(`/session/delete/tutor/${id}`)
+            console.log(data);
+            toast.success('Deleted successfully')
+            refetch();
+        }
+        catch(err){
+            console.log(err);
+            toast.error(err)
+        }
+    }
 
     return (
         <div>
@@ -67,6 +84,7 @@ const AllSession = () => {
                                         disabled={item.status === 'Accepted'}
                                          className="btn bg-yellow-100/60 text-yellow-600"><MdModeEditOutline /></Link>
                                         <button
+                                        onClick={()=>handleDelete(item._id)}
                                          disabled={item.status === 'Accepted' ||item.status === 'pending'}
                                          className="btn bg-red-100/60 text-red-600"><FaTrashAlt /></button>
                                     </div>

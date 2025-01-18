@@ -13,6 +13,7 @@ import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers";
 import ViewAllStudySession from "../Pages/Dashboard/Admin/ViewAllStudySession";
 import ViewAllMaterials from "../Pages/Dashboard/Admin/ViewAllMaterials";
 import UpdateSessionTutor from "../Pages/Dashboard/TeacherDashboard/UpdateSessionTutor";
+import UpdateSessionAdmin from "../Pages/Dashboard/Admin/UpdateSessionAdmin";
 
 
 export const router = createBrowserRouter([
@@ -73,6 +74,11 @@ export const router = createBrowserRouter([
         {
           path : 'view-all-materials',
           element : <ViewAllMaterials/>
+        },
+        {
+          path : 'update-session-admin/:id',
+          element : <UpdateSessionAdmin/>,
+          loader : ({params})=> fetch(`http://localhost:5000/session/admin/${params.id}`)
         },
       ]
     }
