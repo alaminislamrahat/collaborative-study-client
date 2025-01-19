@@ -12,7 +12,7 @@ const Payment = () => {
     return (
         <div>
             <Elements stripe={stripePromiss}>
-                <StripePayment />
+                <StripePayment paymentData={data}/>
 
             </Elements>
         </div>
