@@ -15,6 +15,9 @@ import ViewAllMaterials from "../Pages/Dashboard/Admin/ViewAllMaterials";
 import UpdateSessionTutor from "../Pages/Dashboard/TeacherDashboard/UpdateSessionTutor";
 import UpdateSessionAdmin from "../Pages/Dashboard/Admin/UpdateSessionAdmin";
 import UpdateMaterial from "../Pages/Dashboard/TeacherDashboard/UpdateMaterial";
+import ViewBookedSession from "../Pages/Dashboard/Student/ViewBookedSession";
+import CreateNote from "../Pages/Dashboard/Student/CreateNote";
+import DetailCard from "../Pages/DetailCard/DetailCard";
 
 
 export const router = createBrowserRouter([
@@ -34,12 +37,28 @@ export const router = createBrowserRouter([
             path:'login',
             element : <Login/>
         },
+        {
+            path:'detail/:id',
+            element : <DetailCard/>,
+            loader : ({params})=> fetch(`http://localhost:5000/detail/${params.id}`)
+        },
       ]
     },
     {
       path : 'dashboard',
       element : <Dashboard/>,
       children : [
+
+        //student
+        {
+          path: 'view-booked-session',
+          element : <ViewBookedSession/>
+        },
+        {
+          path: 'create-note',
+          element : <CreateNote/>
+        },
+
         // for tutor
         {
           path : 'all-session',

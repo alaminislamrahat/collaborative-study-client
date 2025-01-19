@@ -22,12 +22,15 @@ import { FaRegEdit, FaRegListAlt, FaUsers } from "react-icons/fa";
 import UseAuth from "../../../Hooks/UseAuth";
 import UseAdmin from "../../../Hooks/UseAdmin";
 import UseTeacher from "../../../Hooks/UseTeacher";
-import { CiViewTimeline } from "react-icons/ci";
+import { CiViewList, CiViewTimeline } from "react-icons/ci";
+import useStudent from "../../../Hooks/useStudent";
+import { IoCreateOutline } from "react-icons/io5";
 
 const Slider = () => {
     const { user, logOut } = UseAuth();
     const { isAdmin } = UseAdmin();
     const { isTeacher } = UseTeacher();
+    const { isStudent } = useStudent();
 
     const navigate = useNavigate();
 
@@ -122,6 +125,53 @@ const Slider = () => {
                                 <CiViewTimeline />
                                 </ListItemPrefix>
                                 View-all-study-session
+                            </ListItem>
+                        </NavLink>
+                        <NavLink to="/dashboard/view-all-materials">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <FaRegEdit />
+                                </ListItemPrefix>
+                                View-all-materials
+                             
+                            </ListItem>
+                        </NavLink>
+                       
+
+                        <ListItem className="text-red-500 bg-red-100/60" onClick={handleLogout}>
+                            <ListItemPrefix>
+                                <PowerIcon className="h-5 w-5" />
+                            </ListItemPrefix>
+                            Log Out
+                        </ListItem>
+                    </List>
+                </Card>
+            }
+            {
+                isStudent && <Card className="h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
+                    <div className="mb-2 p-4">
+                        <NavLink to="/">
+                            <Typography variant="h5" className="text-[#72a55f]">
+                                Study Zone
+                            </Typography>
+                        </NavLink>
+                    </div>
+                    <List>
+                        <NavLink to="/dashboard/view-booked-session">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                <CiViewList />
+                                </ListItemPrefix>
+                                View booked session
+
+                            </ListItem>
+                        </NavLink>
+                        <NavLink to="/dashboard/create-note">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                <IoCreateOutline />
+                                </ListItemPrefix>
+                                Create note
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/view-all-materials">

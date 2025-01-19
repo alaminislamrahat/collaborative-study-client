@@ -4,10 +4,12 @@ import UseAuth from "../../../Hooks/UseAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
 import UseTeacher from "../../../Hooks/UseTeacher";
 import UseAdmin from "../../../Hooks/UseAdmin";
+import useStudent from "../../../Hooks/useStudent";
 
 const Navbar = () => {
     const {isTeacher} = UseTeacher();
     const {isAdmin} = UseAdmin();
+    const {isStudent} = useStudent();
 
 
     const { user, logOut } = UseAuth();
@@ -34,6 +36,9 @@ const Navbar = () => {
 
                             {
                                  user && isAdmin &&  <NavLink className={"btn mb-4"} to={"/dashboard/view-all-users"}><a>Dashboard</a></NavLink>  
+                            }
+                            {
+                                 user && isStudent &&  <NavLink className={"btn mb-4"} to={"/dashboard/view-booked-session"}><a>Dashboard</a></NavLink>  
                             }
                             <a
                                 onClick={() => logOut()}
