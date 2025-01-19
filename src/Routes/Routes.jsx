@@ -18,6 +18,7 @@ import UpdateMaterial from "../Pages/Dashboard/TeacherDashboard/UpdateMaterial";
 import ViewBookedSession from "../Pages/Dashboard/Student/ViewBookedSession";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import DetailCard from "../Pages/DetailCard/DetailCard";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -106,6 +107,13 @@ export const router = createBrowserRouter([
           element : <UpdateSessionAdmin/>,
           loader : ({params})=> fetch(`http://localhost:5000/session/admin/${params.id}`)
         },
+
+        // payment route 
+        {
+          path : 'payment/:id',
+          element : <Payment/>,
+          loader : ({params})=>fetch(`http://localhost:5000/session/payment/${params.id}`)
+        }
       ]
     }
   ]);
