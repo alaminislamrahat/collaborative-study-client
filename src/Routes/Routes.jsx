@@ -14,6 +14,7 @@ import ViewAllStudySession from "../Pages/Dashboard/Admin/ViewAllStudySession";
 import ViewAllMaterials from "../Pages/Dashboard/Admin/ViewAllMaterials";
 import UpdateSessionTutor from "../Pages/Dashboard/TeacherDashboard/UpdateSessionTutor";
 import UpdateSessionAdmin from "../Pages/Dashboard/Admin/UpdateSessionAdmin";
+import UpdateMaterial from "../Pages/Dashboard/TeacherDashboard/UpdateMaterial";
 
 
 export const router = createBrowserRouter([
@@ -62,6 +63,12 @@ export const router = createBrowserRouter([
           element : <UpdateSessionTutor/>,
           loader : ({params})=> fetch(`http://localhost:5000/session/${params.id}`)
         },
+        {
+          path : 'update-material/:id',
+          element : <UpdateMaterial/>,
+          loader : ({params})=> fetch(`http://localhost:5000/material/${params.id}`)
+        },
+       
         // for admin
         {
           path : 'view-all-users',
