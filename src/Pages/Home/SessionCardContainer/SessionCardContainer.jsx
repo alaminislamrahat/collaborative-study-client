@@ -18,7 +18,7 @@ const SessionCardContainer = () => {
     return (
         <div className=" container mx-auto py-3">
             <h1 className="text-4xl font-bold text-center py-10">All Session</h1>
-            <div className="grid grid-cols-3 gap-4 items-center justify-center ">
+            <div className="grid grid-cols-3 gap-6 items-center justify-center ">
                 {
                     allData.slice(0,6).map(item => <Card item={item} key={item._id}/>)
                 }

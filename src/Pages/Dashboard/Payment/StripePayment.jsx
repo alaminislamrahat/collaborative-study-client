@@ -7,12 +7,42 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
 
 const StripePayment = ({ paymentData }) => {
-    const { registrationFee } = paymentData;
+    const { user } = UseAuth();
     const [clientSecrate, setClientSecrate] = useState('')
-    const { user } = UseAuth()
+   
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = UseAxiosSecure();
+
+    
+    const { sessionTitle,
+        tutorName,
+        tutorEmail,
+        sessionDescription,
+        registrationStartDate,
+        registrationEndDate,
+        classStartDate,
+        classEndDate,
+        sessionDuration,
+        registrationFee,
+
+
+        _id } = paymentData;
+
+    const allData = {
+        sessionTitle,
+        tutorName,
+        tutorEmail,
+        sessionDescription,
+        registrationStartDate,
+        registrationEndDate,
+        classStartDate,
+        classEndDate,
+        sessionDuration,
+        registrationFee, studentEmail: user?.email, StudentName: user?.displayName, studySessionId: _id
+    }
+
+    
 
 
     useEffect(() => {
@@ -60,16 +90,31 @@ const StripePayment = ({ paymentData }) => {
         }
         else {
             console.log(paymentIntent)
-            if (paymentIntent.status === 'success') {
+            if (paymentIntent.status === 'succeeded') {
                 console.log('payment success', paymentIntent.id)
-                toast.success('payment successfully');
+                // toast.success('payment successfully');
+                try {
+                    const { data } = await axiosSecure.post('/booking', allData);
+                    console.log(data)
+                    if (data.message) {
+                        toast.error('all ready exist')
+                    }
+                    else {
+                        toast.success("Session booked successfully!");
+                    }
+
+                }
+                catch (error) {
+                    console.log(error);
+                    toast.error(error)
+                }
                 // to data
                 // axiosSecure.post('/',{paymentinfo : paymentData})
             }
         }
     };
     return (
-        <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div className="max-w-lg mt-10 mx-auto p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold text-center mb-6">
                 Payment Information
             </h2>
