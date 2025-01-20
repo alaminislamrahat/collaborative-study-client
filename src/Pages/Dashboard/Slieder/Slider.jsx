@@ -174,12 +174,12 @@ const Slider = () => {
                                 Create note
                             </ListItem>
                         </NavLink>
-                        <NavLink to="/dashboard/view-all-materials">
+                        <NavLink to="/dashboard/view-all-notes">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
-                                View-all-materials
+                                View-all-notes
                              
                             </ListItem>
                         </NavLink>

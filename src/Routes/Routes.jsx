@@ -19,6 +19,7 @@ import ViewBookedSession from "../Pages/Dashboard/Student/ViewBookedSession";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import DetailCard from "../Pages/DetailCard/DetailCard";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import ViewAllNote from "../Pages/Dashboard/Student/ViewAllNote";
 
 
 export const router = createBrowserRouter([
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
         {
           path: 'create-note',
           element : <CreateNote/>
+        },
+        {
+          path: 'view-all-notes',
+          element : <ViewAllNote/>
         },
 
         // for tutor
