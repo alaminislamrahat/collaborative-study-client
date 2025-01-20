@@ -101,6 +101,16 @@ const StripePayment = ({ paymentData }) => {
                     }
                     else {
                         toast.success("Session booked successfully!");
+                        const paymentSummary = {
+                            transectionId: paymentIntent.id,
+                            amount: paymentIntent.amount / 100, // Convert to dollars
+                            currency: paymentIntent.currency,
+                            status: paymentIntent.status,
+                            sessionId: _id,
+                            studentEmail: user?.email,
+                        };
+    
+                        await axiosSecure.post("/payment-intent", paymentSummary);
                     }
 
                 }
