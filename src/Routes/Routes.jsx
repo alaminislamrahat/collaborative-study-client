@@ -20,6 +20,7 @@ import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import DetailCard from "../Pages/DetailCard/DetailCard";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ViewAllNote from "../Pages/Dashboard/Student/ViewAllNote";
+import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,11 @@ export const router = createBrowserRouter([
         {
           path: 'view-all-notes',
           element : <ViewAllNote/>
+        },
+        {
+          path: 'update-note/:id',
+          element : <UpdateNote/>,
+          loader : ({params})=>fetch(`http://localhost:5000/note-student/${params.id}`)
         },
 
         // for tutor
