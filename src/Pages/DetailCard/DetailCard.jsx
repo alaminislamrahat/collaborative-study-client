@@ -3,6 +3,7 @@ import UseAuth from "../../Hooks/UseAuth";
 import useStudent from "../../Hooks/useStudent";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 const DetailCard = () => {
     const { user } = UseAuth();
@@ -38,6 +39,19 @@ const DetailCard = () => {
         sessionDuration,
         registrationFee, studentEmail: user?.email, StudentName: user?.displayName, studySessionId: _id
     }
+
+
+    // review 
+
+    const {data : myreview} = useQuery({
+        queryKey : ['review'],
+        queryFn: async()=>{
+            const {data} = await axiosSecure.get(`/review?id=${_id}`)
+            return data
+        }
+    })
+
+    console.log(myreview)
 
     const handleBookNow = async () => {
         if (registrationFee === 0) {
@@ -116,10 +130,10 @@ const DetailCard = () => {
                 <div className="flex flex-col">
                     <h2 className="text-lg font-semibold text-gray-800">Reviews</h2>
                     <div className="mt-4 space-y-4 overflow-y-auto h-52 border rounded-md p-4 bg-gray-50">
-                        {reviews && reviews.length > 0 ? (
-                            reviews.map((review, index) => (
+                        {myreview && myreview.length > 0 ? (
+                            myreview?.map((review, index) => (
                                 <div key={index} className="p-4 bg-white rounded-md shadow">
-                                    <p className="text-gray-800 font-medium">{review.user}</p>
+                                    <p className="text-gray-800 font-medium">{review.userEmail}</p>
                                     <p className="text-gray-600 mt-2">{review.comment}</p>
                                 </div>
                             ))
