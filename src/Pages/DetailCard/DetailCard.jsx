@@ -86,7 +86,7 @@ const DetailCard = () => {
                     <div className="flex justify-between items-center">
                         <h1 className="text-3xl font-bold text-gray-800">{sessionTitle}</h1>
                         <span
-                            className={`px-4 py-1 text-sm rounded-full ${isDisabled ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                            className={`px-4 py-1 text-sm rounded-full ${isStudent ? "bg-green-100 text-green-800" : "bg-red-100 text-red-500"
                                 }`}
                         >
                             {isDisabled}
@@ -144,8 +144,8 @@ const DetailCard = () => {
                     <div className="mt-8">
                         <button
                             onClick={handleBookNow}
-                            disabled={!isDisabled}
-                            className={`w-full px-6 py-3 text-white font-bold rounded-md ${!isDisabled
+                            disabled={!isStudent}
+                            className={`w-full px-6 py-3 text-white font-bold rounded-md ${!isStudent
                                 ? "bg-gray-400 cursor-not-allowed"
                                 : "bg-green-300 text-green-800 hover:bg-green-950"
                                 }`}

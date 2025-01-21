@@ -183,6 +183,15 @@ const Slider = () => {
                              
                             </ListItem>
                         </NavLink>
+                        <NavLink to="/dashboard/view-all-student-materials">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <FaRegEdit />
+                                </ListItemPrefix>
+                                View-all-materials
+                             
+                            </ListItem>
+                        </NavLink>
                        
 
                         <ListItem className="text-red-500 bg-red-100/60" onClick={handleLogout}>

@@ -21,6 +21,7 @@ import DetailCard from "../Pages/DetailCard/DetailCard";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ViewAllNote from "../Pages/Dashboard/Student/ViewAllNote";
 import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
+import ViewAllStudentMaterial from "../Pages/Dashboard/Student/ViewAllStudentMaterial";
 
 
 export const router = createBrowserRouter([
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
         {
           path: 'view-all-notes',
           element : <ViewAllNote/>
+        },
+        {
+          path: 'view-all-student-materials',
+          element : <ViewAllStudentMaterial/>
         },
         {
           path: 'update-note/:id',
