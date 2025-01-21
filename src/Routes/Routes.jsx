@@ -22,6 +22,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import ViewAllNote from "../Pages/Dashboard/Student/ViewAllNote";
 import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 import ViewAllStudentMaterial from "../Pages/Dashboard/Student/ViewAllStudentMaterial";
+import AllSessionPage from "../Pages/AllSessionPage/AllSessionPage";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
         {
             path:'register',
             element : <Register/>
+        },
+        {
+            path:'all-session-page',
+            element : <AllSessionPage/>
         },
         {
             path:'login',

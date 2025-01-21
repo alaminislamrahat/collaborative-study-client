@@ -40,6 +40,8 @@ const Navbar = () => {
                             {
                                  user && isStudent &&  <NavLink className={"btn mb-4"} to={"/dashboard/view-booked-session"}><a>Dashboard</a></NavLink>  
                             }
+                            <NavLink className={"btn mb-4"} to={"/all-session-page"}><a>All Session</a></NavLink> 
+
                             <a
                                 onClick={() => logOut()}
                                 className="btn">Logout</a>
