@@ -21,7 +21,7 @@ const ViewAllStudentMaterial = () => {
         };
 
         fetchBookedSessions();
-    }, [axiosSecure, user.email]);
+    }, [axiosSecure, user?.email]);
 
     // Fetch materials for a specific session
     const fetchMaterials = async (sessionId) => {

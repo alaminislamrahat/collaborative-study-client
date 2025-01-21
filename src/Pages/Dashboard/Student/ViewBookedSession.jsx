@@ -94,9 +94,7 @@ const ViewBookedSession = () => {
                                         >
                                             <MdDetails title="Details Icon" />
                                         </button>
-                                        <button className="btn bg-red-100/60 text-red-600">
-                                            <VscCodeReview />
-                                        </button>
+                                        
                                     </div>
                                 </td>
                             </tr>
