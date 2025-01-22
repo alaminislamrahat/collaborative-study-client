@@ -30,9 +30,23 @@ const UpdateSessionTutor = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleDelete = async (id)=> {
+        console.log(id)
+        
+        const { data } = await axiosSecure.delete(`/reject/reason/${id}`)
+        console.log(data)
+      
+        navigate('/dashboard/all-session');
+       
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData)
+        console.log(data._id)
+    
+
+        
+    
         try {
             const response = await axiosSecure.put(`/update/session/${data._id}`, formData);
             if (response.data) {
@@ -50,7 +64,9 @@ const UpdateSessionTutor = () => {
                     registrationFee: 0,
                     status: 'pending',
                 });
-                navigate('/dashboard/all-session');
+
+               
+                
             }
         } catch (error) {
             console.error('Error updating session:', error);
@@ -193,7 +209,7 @@ const UpdateSessionTutor = () => {
 
                 {/* Submit Button */}
                 <div className="md:col-span-2">
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                    <button type="submit" onClick={()=>handleDelete(data._id)} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
                         Update Session
                     </button>
                 </div>

@@ -35,7 +35,7 @@ const ViewAllStudySession = () => {
             try {
                 const { data } = await axiosSecure.delete(`/reject/reason/${id}`)
                 console.log(data)
-       
+
 
             }
             catch (err) {
@@ -186,7 +186,7 @@ const ViewAllStudySession = () => {
                                             onClick={() => {
                                                 setReject(item);
                                                 document.getElementById('my_modal_5').showModal();
-                                                 // Add your logic here
+                                                // Add your logic here
                                             }}
                                             className="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
                                         >
@@ -245,7 +245,7 @@ const ViewAllStudySession = () => {
                             }
 
                             handleStatus(selectedId, selectedStatus, "Accepted", true, fee);
-                            
+
                             document.getElementById("my_modal_1").close();
                         }}
                         className="flex flex-col gap-4"

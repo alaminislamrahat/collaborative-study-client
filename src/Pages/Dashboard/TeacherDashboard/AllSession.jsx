@@ -4,35 +4,58 @@ import { MdModeEditOutline } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+
+import { useState } from "react";
 import UseAuth from "../../../Hooks/UseAuth";
+
 
 
 const AllSession = () => {
 
     const axiosSecure = UseAxiosSecure();
-    const {user } = UseAuth()
+    const { user } = UseAuth()
+    const [idReject, setIdReject] = useState('')
 
     const { data: studysession = [], refetch } = useQuery({
-        queryKey: [user?.email,"allSession"],
+        queryKey: [user?.email, "allSession"],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/allSession/tutor?email=${user.email}`);
             return data;
         },
     });
 
-    const handleDelete = async(id) => {
+
+    const handleAccess = (id)=>{
+        
+        setIdReject(id)
+    }
+
+
+    const { data: reject } = useQuery({
+        queryKey: ['reject'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/rejection/reason/${idReject}`);
+            return data
+        }
+    })
+
+    const handleDelete = async (id) => {
         console.log(id);
-        try{
-            const {data} = await axiosSecure.delete(`/session/delete/tutor/${id}`)
+        try {
+            const { data } = await axiosSecure.delete(`/session/delete/tutor/${id}`)
             console.log(data);
             toast.success('Deleted successfully')
             refetch();
         }
-        catch(err){
+        catch (err) {
             console.log(err);
             toast.error(err)
         }
     }
+
+    
+
+    
 
     return (
         <div>
@@ -81,12 +104,20 @@ const AllSession = () => {
                                 <td>
                                     <div className="flex gap-3">
                                         <Link to={`/dashboard/update-session/${item._id}`}
-                                        disabled={item.status === 'Accepted'}
-                                         className="btn bg-yellow-100/60 text-yellow-600"><MdModeEditOutline /></Link>
+                                            disabled={item.status === 'Accepted'}
+                                            className="btn bg-yellow-100/60 text-yellow-600"><MdModeEditOutline /></Link>
                                         <button
-                                        onClick={()=>handleDelete(item._id)}
-                                         disabled={item.status === 'Accepted' ||item.status === 'pending'}
-                                         className="btn bg-red-100/60 text-red-600"><FaTrashAlt /></button>
+                                            onClick={() => handleDelete(item._id)}
+                                            disabled={item.status === 'Accepted' || item.status === 'pending'}
+                                            className="btn bg-red-100/60 text-red-600"><FaTrashAlt /></button>
+                                        <button
+                                            onClick={() => {
+                                                // Set the reject item
+                                                handleAccess(item._id)
+                                                document.getElementById("my_modal_1").showModal(); // Show the modal
+                                            }}
+                                            disabled={item.status === 'Accepted' || item.status === 'pending'}
+                                            className="btn bg-red-100/60 text-red-600">Reject Reason</button>
                                     </div>
                                 </td>
                             </tr>
@@ -94,6 +125,28 @@ const AllSession = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+            <dialog id="my_modal_1" className="modal">
+                <div className="modal-box bg-gradient-to-r from-red-100 via-white to-red-100 p-6 shadow-xl rounded-lg">
+                    <div className="text-center">
+                        <h1 className="text-red-600 text-4xl font-bold mb-4">
+                            <span className="underline">Reject Reason</span>: {reject?.reason}
+                        </h1>
+                        <p className="text-gray-700 text-lg font-medium mb-6">
+                            <span className="font-semibold">Feedback:</span> {reject?.feedback}
+                        </p>
+                    </div>
+                    <div className="modal-action flex justify-center">
+                        <form method="dialog">
+                            <button className="btn btn-outline btn-error hover:bg-red-500 hover:text-white px-6 py-2 rounded-full transition-all duration-200">
+                                Close
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
 
 
         </div>
