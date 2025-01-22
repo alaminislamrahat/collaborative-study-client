@@ -6,10 +6,16 @@ import { Link } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 
+// onClick={() =>
+//     
+// }
+
+
 const ViewAllStudySession = () => {
     const axiosSecure = UseAxiosSecure();
     const [selectedId, setSelectedId] = useState(null);
     const [selectedStatus, setSelectedStatus] = useState(null);
+    const [reject, setReject] = useState({})
 
     const { data: studysession = [], refetch } = useQuery({
         queryKey: ["studysession"],
@@ -25,6 +31,21 @@ const ViewAllStudySession = () => {
             return;
         }
 
+        if (status == 'Accepted') {
+            try {
+                const { data } = await axiosSecure.delete(`/reject/reason/${id}`)
+                console.log(data)
+       
+
+            }
+            catch (err) {
+                console.log(err)
+            }
+
+        }
+
+
+
         try {
             const payload = { status };
             if (isPaid) {
@@ -33,6 +54,9 @@ const ViewAllStudySession = () => {
             const { data } = await axiosSecure.put(`/status/${id}`, payload);
             console.log(data);
             toast.success("Status updated successfully!");
+
+
+
             refetch()
 
         } catch (err) {
@@ -49,19 +73,45 @@ const ViewAllStudySession = () => {
 
 
     // delete 
-    const handleDelete = async(id) => {
+    const handleDelete = async (id) => {
         console.log(id);
-        try{
-            const {data} = await axiosSecure.delete(`/session/delete/admin/${id}`)
+        try {
+            const { data } = await axiosSecure.delete(`/session/delete/admin/${id}`)
             console.log(data);
             toast.success('Deleted successfully')
             refetch();
         }
-        catch(err){
+        catch (err) {
             console.log(err);
             toast.error(err)
         }
     }
+
+    const handleRejection = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const reason = form.reason.value;
+        const feedback = form.feedback.value;
+        console.log(reason, feedback)
+        const rejectData = { reason, feedback, sessionId: reject._id }
+        console.log(reject, 'from state')
+
+        try {
+            const { data } = await axiosSecure.post('/rejection/reason', rejectData)
+            console.log(data)
+            handleStatus(reject._id, reject.status, "Rejected")
+
+
+        }
+        catch (err) {
+            console.log(err);
+            toast.error(err)
+        }
+    }
+
+
+
+
 
     return (
         <div>
@@ -133,9 +183,11 @@ const ViewAllStudySession = () => {
 
                                         <button
                                             disabled={item.status === "Rejected"}
-                                            onClick={() =>
-                                                handleStatus(item._id, item.status, "Rejected")
-                                            }
+                                            onClick={() => {
+                                                setReject(item);
+                                                document.getElementById('my_modal_5').showModal();
+                                                 // Add your logic here
+                                            }}
                                             className="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
                                         >
                                             <svg
@@ -161,7 +213,7 @@ const ViewAllStudySession = () => {
                                             disabled={item.status === 'pending' || item.status === 'Rejected'}
                                             className="btn bg-yellow-100/60 text-yellow-600"><MdModeEditOutline /></Link>
                                         <button
-                                            onClick={()=>handleDelete(item._id)}
+                                            onClick={() => handleDelete(item._id)}
                                             disabled={item.status === 'pending' || item.status === 'Rejected'}
                                             className="btn bg-red-100/60 text-red-600"><FaTrashAlt /></button>
                                     </div>
@@ -193,6 +245,7 @@ const ViewAllStudySession = () => {
                             }
 
                             handleStatus(selectedId, selectedStatus, "Accepted", true, fee);
+                            
                             document.getElementById("my_modal_1").close();
                         }}
                         className="flex flex-col gap-4"
@@ -261,6 +314,69 @@ const ViewAllStudySession = () => {
                     </form>
                 </div>
             </dialog>
+
+
+
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Reject Study Session</h3>
+                    <p className="py-2">Please provide the reason for rejection and feedback for the requester.</p>
+
+                    {/* Form Section */}
+                    <form
+                        id="rejectionForm"
+                        onSubmit={(e) => {
+                            e.preventDefault(); // Prevent default form submission
+                            handleRejection(e); // Call your rejection handler
+                            document.getElementById("my_modal_5").close(); // Close the modal programmatically
+                        }}
+                    >
+                        <div className="form-control mb-4">
+                            <label htmlFor="reason" className="label">
+                                <span className="label-text font-semibold">Rejection Reason</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="reason"
+                                name="reason"
+                                placeholder="Enter the reason for rejection"
+                                className="input input-bordered w-full"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-control mb-4">
+                            <label htmlFor="feedback" className="label">
+                                <span className="label-text font-semibold">Feedback</span>
+                            </label>
+                            <textarea
+                                id="feedback"
+                                name="feedback"
+                                placeholder="Enter feedback for the requester"
+                                className="textarea textarea-bordered w-full"
+                                rows="4"
+                            ></textarea>
+                        </div>
+
+                        <div className="modal-action">
+                            <button type="submit" className="btn btn-error">
+                                Reject Session
+                            </button>
+                            <button
+                                type="button"
+                                className="btn"
+                                onClick={() => document.getElementById("my_modal_5").close()} // Close modal on click
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+
+
+
         </div>
     );
 };
