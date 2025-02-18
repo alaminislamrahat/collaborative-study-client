@@ -1,7 +1,9 @@
 
 import AboutUs from '../AboutUs/AboutUs';
 import Banner from '../Banner/Banner';
+import ContactUs from '../ContactUs/ContactUs';
 import Count from '../Count/Count';
+import Gallery from '../Gallery/Gallery';
 import OurStudentSay from '../OurStudentSay/OurStudentSay';
 import PopularWorks from '../PopularWorks/PopularWorks';
 import SessionCardContainer from '../SessionCardContainer/SessionCardContainer';
@@ -17,7 +19,9 @@ const Home = () => {
                 <Count/>
             <SessionCardContainer/>
             <Tutors/>
+            <Gallery/>
             <OurStudentSay/>
+            <ContactUs/>
             </div>
         </div>
     );
