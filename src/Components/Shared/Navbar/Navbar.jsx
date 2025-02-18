@@ -15,7 +15,7 @@ const Navbar = () => {
     const { user, logOut } = UseAuth();
     return (
        <div className=" container">
-         <div className="navbar bg-base-100 px-8 bg-opacity-40 z-20  fixed">
+         <div className="navbar bg-base-100 px-8  z-20  fixed">
             <div className="navbar-start">
 
                 <Link to='/' className="btn text-white bg-[#71A45E] text-xl">Study Zone</Link>
