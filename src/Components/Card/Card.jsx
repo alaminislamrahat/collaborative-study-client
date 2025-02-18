@@ -23,7 +23,7 @@ const Card = ({ item }) => {
                 </h1>
 
                 <p title={sessionDescription} className='mt-2 text-sm text-gray-600 '>
-                    {sessionDescription.substring(0, 70)}...
+                    {sessionDescription.substring(0, 30)}...
                 </p>
                 <Link to={`/detail/${_id}`}
                 disabled={!isOngoing}
