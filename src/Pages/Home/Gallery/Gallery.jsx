@@ -5,12 +5,12 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null); // For lightbox effect
 
   const images = [
-    "https://i.ibb.co.com/Z1vCzRRM/pensive-young-woman-glasses-red-hat-looking-away.jpg",
-    "https://i.ibb.co.com/JFWYkDQF/student-man-with-thumb-up.jpg",
-    "https://i.ibb.co.com/kkgvX9L/handsome-man-wearing-fashion-glasses-wool-hat-with-notebook-school-bag.jpg",
-    "https://i.ibb.co.com/Y4c2cs2k/portrait-satisfied-african-american-female-student-smiling-pleased-showing-okay-sign-like-something.jpg",
-    "https://i.ibb.co.com/bMM8pvrw/smiling-young-woman-with-books-backpack-standing-white-background.jpg",
-    "https://i.ibb.co.com/23fJ6Dd4/young-student-woman-wearing-denim-jacket-eyeglasses-holding-colorful-folders-showing-thumb-up-pink.jpg",
+    "https://i.ibb.co.com/cK3Y9wNp/pensive-young-woman-glasses-red-hat-looking-away-1.jpg",
+    "https://i.ibb.co.com/mrfkJcCK/curly-hair-boy-optique-glasses-holding-his-backpack-is-confident-motivated-front-view-1.jpg",
+    "https://i.ibb.co.com/kVtXg43y/smiling-happy-indian-student-with-backpack-pointing-his-finger-wall-1.jpg",
+    "https://i.ibb.co.com/RG3hG2sB/portrait-satisfied-african-american-female-student-smiling-pleased-showing-okay-sign-like-something.jpg",
+    "https://i.ibb.co.com/j9LLd0zr/smiling-young-woman-with-books-backpack-standing-white-background-1.jpg",
+    "https://i.ibb.co.com/20M4t1yT/young-student-woman-wearing-denim-jacket-eyeglasses-holding-colorful-folders-showing-thumb-up-pink-1.jpg",
   ];
 
   const openLightbox = (image) => {
