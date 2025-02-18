@@ -43,8 +43,8 @@ const Slider = () => {
     return (
         <div>
             {
-                isTeacher && <Card className="h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
-                    <div className="mb-2 p-4">
+                isTeacher && <Card className="lg:h-[calc(100vh-2rem)] w-full  p-4 shadow-xl shadow-blue-gray-900/5">
+                    <div className="mb-2 p-4 x">
                         <NavLink to="/">
                             <Typography variant="h5" className="text-[#72a55f]">
                                 Study Zone
@@ -124,7 +124,7 @@ const Slider = () => {
                                 <ListItemPrefix>
                                 <CiViewTimeline />
                                 </ListItemPrefix>
-                                View-all-study-session
+                                View all study session
                             </ListItem>
                         </NavLink>
                         <NavLink to="/dashboard/view-all-materials">
@@ -132,7 +132,7 @@ const Slider = () => {
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
-                                View-all-materials
+                                View all materials
                              
                             </ListItem>
                         </NavLink>
@@ -179,7 +179,7 @@ const Slider = () => {
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
-                                View-all-notes
+                                View all notes
                              
                             </ListItem>
                         </NavLink>
@@ -188,7 +188,7 @@ const Slider = () => {
                                 <ListItemPrefix>
                                     <FaRegEdit />
                                 </ListItemPrefix>
-                                View-all-materials
+                                View all materials
                              
                             </ListItem>
                         </NavLink>

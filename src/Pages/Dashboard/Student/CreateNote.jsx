@@ -21,7 +21,7 @@ const CreateNote = () => {
         // Post the note data to the server (adjust the endpoint URL as needed)
         try {
             const { data } = await axiosSecure.post('/note-student', noteData)
-            console.log(data)
+            // console.log(data)
             toast.success('note post successfully')
         }
         catch (err) {

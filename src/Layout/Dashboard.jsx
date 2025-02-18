@@ -5,7 +5,7 @@ import Slider from "../Pages/Dashboard/Slieder/Slider";
 const Dashboard = () => {
     return (
         <div className="bg-[#f4f7f3]">
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row">
                 <Slider />
               <div className="flex-1">
               <Outlet />

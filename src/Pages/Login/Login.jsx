@@ -6,9 +6,11 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from '../../Firebase/firebase.confiq';
 import UseAuth from '../../Hooks/UseAuth';
 import toast from 'react-hot-toast';
+import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 
 
 const Login = () => {
+    const axiosPublic = UseAxiosPublic();
     const { signIn } = UseAuth();
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
@@ -36,6 +38,13 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 console.log(result);
+                const userInfo = {
+                    email: result.user?.email,
+                    role : 'student',
+                    name : result.user?.displayName
+                }
+
+                axiosPublic.post('/role', userInfo)
                 navigate(location.state ? location.state : '/');
             })
             .catch((err) => {

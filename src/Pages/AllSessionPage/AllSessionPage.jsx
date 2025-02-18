@@ -56,7 +56,7 @@ const AllSessionPage = () => {
 
         setSearch(searchText)
     }
-    console.log(search)
+    // console.log(search)
 
     return (
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>

@@ -7,7 +7,7 @@ const stripePromiss = loadStripe(
 );
 const Payment = () => {
     const data = useLoaderData();
-    console.log(data)
+    // console.log(data)
 
     return (
         <div>

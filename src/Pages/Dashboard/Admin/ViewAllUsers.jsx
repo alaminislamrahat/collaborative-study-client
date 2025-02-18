@@ -28,7 +28,7 @@ const ViewAllUsers = () => {
        getData()
     },[axiosSecure, search])
 
-    console.log(allRole)
+    // console.log(allRole)
 
 
     const getData = async () => {
@@ -39,10 +39,10 @@ const ViewAllUsers = () => {
    
 
     const handleRoleChange = async (id) => {
-        console.log(id)
+        // console.log(id)
         try {
             const { data } = await axiosSecure.put(`/users/role/${id}`, { role })
-            console.log(data);
+            // console.log(data);
             toast.success(`Now role is ${role}`);
             getData()
 

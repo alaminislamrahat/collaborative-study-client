@@ -48,7 +48,7 @@ const StripePayment = ({ paymentData }) => {
     useEffect(() => {
         axiosSecure.post("/stripe-payment", { price: registrationFee })
             .then(res => {
-                console.log(res.data.clientSecret)
+                // console.log(res.data.clientSecret)
                 setClientSecrate(res.data.clientSecret);
             })
     }, [axiosSecure, registrationFee]);

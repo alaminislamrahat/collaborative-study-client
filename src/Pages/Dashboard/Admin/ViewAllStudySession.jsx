@@ -34,12 +34,12 @@ const ViewAllStudySession = () => {
         if (status == 'Accepted') {
             try {
                 const { data } = await axiosSecure.delete(`/reject/reason/${id}`)
-                console.log(data)
+                // console.log(data)
 
 
             }
             catch (err) {
-                console.log(err)
+                // console.log(err)
             }
 
         }
@@ -52,7 +52,7 @@ const ViewAllStudySession = () => {
                 payload.registrationFee = fee;
             }
             const { data } = await axiosSecure.put(`/status/${id}`, payload);
-            console.log(data);
+            // console.log(data);
             toast.success("Status updated successfully!");
 
 
@@ -77,12 +77,12 @@ const ViewAllStudySession = () => {
         console.log(id);
         try {
             const { data } = await axiosSecure.delete(`/session/delete/admin/${id}`)
-            console.log(data);
+            // console.log(data);
             toast.success('Deleted successfully')
             refetch();
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
             toast.error(err)
         }
     }
@@ -98,7 +98,7 @@ const ViewAllStudySession = () => {
 
         try {
             const { data } = await axiosSecure.post('/rejection/reason', rejectData)
-            console.log(data)
+            // console.log(data)
             handleStatus(reject._id, reject.status, "Rejected")
 
 

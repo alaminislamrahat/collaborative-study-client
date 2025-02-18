@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         {
             path:'detail/:id',
             element : <DetailCard/>,
-            loader : ({params})=> fetch(`http://localhost:5000/detail/${params.id}`)
+            loader : ({params})=> fetch(`https://collaborative-study-platform-server-alpha.vercel.app/detail/${params.id}`)
         },
       ]
     },
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
         {
           path: 'update-note/:id',
           element : <UpdateNote/>,
-          loader : ({params})=>fetch(`http://localhost:5000/note-student/${params.id}`)
+          loader : ({params})=>fetch(`https://collaborative-study-platform-server-alpha.vercel.app/note-student/${params.id}`)
         },
 
         // for tutor
@@ -102,12 +102,12 @@ export const router = createBrowserRouter([
         {
           path : 'update-session/:id',
           element : <UpdateSessionTutor/>,
-          loader : ({params})=> fetch(`http://localhost:5000/session/${params.id}`)
+          loader : ({params})=> fetch(`https://collaborative-study-platform-server-alpha.vercel.app/session/${params.id}`)
         },
         {
           path : 'update-material/:id',
           element : <UpdateMaterial/>,
-          loader : ({params})=> fetch(`http://localhost:5000/material/${params.id}`)
+          loader : ({params})=> fetch(`https://collaborative-study-platform-server-alpha.vercel.app/material/${params.id}`)
         },
        
         // for admin
@@ -126,14 +126,14 @@ export const router = createBrowserRouter([
         {
           path : 'update-session-admin/:id',
           element : <UpdateSessionAdmin/>,
-          loader : ({params})=> fetch(`http://localhost:5000/session/admin/${params.id}`)
+          loader : ({params})=> fetch(`https://collaborative-study-platform-server-alpha.vercel.app/session/admin/${params.id}`)
         },
 
         // payment route 
         {
           path : 'payment/:id',
           element : <Payment/>,
-          loader : ({params})=>fetch(`http://localhost:5000/session/payment/${params.id}`)
+          loader : ({params})=>fetch(`https://collaborative-study-platform-server-alpha.vercel.app/session/payment/${params.id}`)
         }
       ]
     }

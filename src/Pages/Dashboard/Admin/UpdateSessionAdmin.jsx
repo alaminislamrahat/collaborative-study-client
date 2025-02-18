@@ -9,6 +9,7 @@ const UpdateSessionAdmin = () => {
     const axiosSecure = UseAxiosSecure();
     const data = useLoaderData();
     const navigate = useNavigate();
+    // console.log(data)
 
     // Initialize formData with default values from the data object
     const [formData, setFormData] = useState({
@@ -24,6 +25,7 @@ const UpdateSessionAdmin = () => {
         registrationFee: data.registrationFee || 0,
         status: data.status || 'pending', // Default status from the server or fallback
     });
+ 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,7 +34,7 @@ const UpdateSessionAdmin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
         try {
             const response = await axiosSecure.put(`/update/session/admin/${data._id}`, formData);
             if (response.data) {

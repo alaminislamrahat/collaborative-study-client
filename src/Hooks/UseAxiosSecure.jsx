@@ -6,7 +6,7 @@ import UseAuth from "./useAuth";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://collaborative-study-platform-server-alpha.vercel.app'
 })
 const useAxiosSecure = () => {
     const { logOut } = UseAuth();

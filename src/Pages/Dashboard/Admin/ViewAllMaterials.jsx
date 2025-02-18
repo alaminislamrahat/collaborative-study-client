@@ -19,12 +19,12 @@ const ViewAllMaterials = () => {
     const handleDelete = async (id) => {
         try {
             const { data } = await axiosSecure.delete(`/delete/material/${id}`)
-            console.log(data);
+            // console.log(data);
             toast.success('Data deleted successfully');
             refetch()
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
             toast.error(err)
         }
 
