@@ -52,6 +52,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                        <NavLink to="/dashboard/dashboard-home">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Teacher Home
+                            </ListItem>
+                        </NavLink>
                         <NavLink to="/dashboard/user-profile">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
@@ -119,6 +127,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                    <NavLink to="/dashboard/dashboard-home">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Admin Home
+                            </ListItem>
+                        </NavLink>
                     <NavLink to="/dashboard/user-profile">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
@@ -173,6 +189,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                    <NavLink to="/dashboard/dashboard-home">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Student Home
+                            </ListItem>
+                        </NavLink>
                     <NavLink to="/dashboard/user-profile">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>

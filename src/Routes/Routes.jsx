@@ -24,6 +24,7 @@ import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 import ViewAllStudentMaterial from "../Pages/Dashboard/Student/ViewAllStudentMaterial";
 import AllSessionPage from "../Pages/AllSessionPage/AllSessionPage";
 import UserProfile from "../Pages/Dashboard/UserProfile/UserProfile";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
         {
           path : 'user-profile',
           element : <UserProfile/>
+        },
+        {
+          path : 'dashboard-home',
+          element : <DashboardHome/>
         },
         //student
         {
