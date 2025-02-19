@@ -6,6 +6,7 @@ import UseTeacher from "../../../Hooks/UseTeacher";
 import { FaUsers, FaDollarSign, FaStar, FaChalkboardTeacher } from "react-icons/fa";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell } from "recharts";
 import UseAuth from "../../../Hooks/UseAuth";
+import axios from "axios";
 
 const DashboardHome = () => {
     const {user} = UseAuth()
@@ -22,13 +23,7 @@ const DashboardHome = () => {
             return data;
         }
     });
-    const { data: studentData = {} } = useQuery({
-        queryKey: ["student-stats"],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/view/booked/session/${user.email}`);
-            return data;
-        }
-    });
+    
 
     const { users = 0, revenue = 0, review = 0, session = 0, booking = 0, activeUsers = 0, inactiveUsers = 0 } = chartData;
 
