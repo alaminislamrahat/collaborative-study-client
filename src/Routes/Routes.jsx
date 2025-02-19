@@ -23,6 +23,7 @@ import ViewAllNote from "../Pages/Dashboard/Student/ViewAllNote";
 import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 import ViewAllStudentMaterial from "../Pages/Dashboard/Student/ViewAllStudentMaterial";
 import AllSessionPage from "../Pages/AllSessionPage/AllSessionPage";
+import UserProfile from "../Pages/Dashboard/UserProfile/UserProfile";
 
 
 export const router = createBrowserRouter([
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       element : <Dashboard/>,
       children : [
 
+        {
+          path : 'user-profile',
+          element : <UserProfile/>
+        },
         //student
         {
           path: 'view-booked-session',

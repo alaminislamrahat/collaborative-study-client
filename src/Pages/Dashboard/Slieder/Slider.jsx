@@ -52,6 +52,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                        <NavLink to="/dashboard/user-profile">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Profile
+                            </ListItem>
+                        </NavLink>
                         <NavLink to="/dashboard/all-session">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
@@ -111,6 +119,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                    <NavLink to="/dashboard/user-profile">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Profile
+                            </ListItem>
+                        </NavLink>
                         <NavLink to="/dashboard/view-all-users">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
@@ -157,6 +173,14 @@ const Slider = () => {
                         </NavLink>
                     </div>
                     <List>
+                    <NavLink to="/dashboard/user-profile">
+                            <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
+                                <ListItemPrefix>
+                                    <VscGoToEditingSession />
+                                </ListItemPrefix>
+                                Profile
+                            </ListItem>
+                        </NavLink>
                         <NavLink to="/dashboard/view-booked-session">
                             <ListItem className="text-[#3764EB] bg-[#E9F3FF] mb-2">
                                 <ListItemPrefix>
